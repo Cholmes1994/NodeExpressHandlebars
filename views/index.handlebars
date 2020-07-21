@@ -1,38 +1,48 @@
-<h1>Eat-Da-Burger!</h1>
+<img class="img-fluid" alt="Hamburger image"
+  src="https://assets.epicurious.com/photos/57c5c6d9cf9e9ad43de2d96e/master/pass/the-ultimate-hamburger.jpg">
 
-<h2>Burgers!</h2>
+<div class="row">
 
-<ul>
-  {{#each burgers}}
-    {{#unless devoured}}
-      {{!-- {{> burgers/burger-block sleep=true}} --}}
-    {{/unless}}
-  {{/each}}
-</ul>
 
-<h2>Burgers that are devoured!</h2>
+  <div class="col-sm boxes rounded-sm m-2 p-1">
+    <h2 class="text-center">Current Orders</h2>
 
-<ul>
-  {{#each burgers}}
-    {{#if devoured}}
-      {{!-- {{> burgers/burger-block sleep=false}} --}}
-    {{/if}}
-  {{/each}}
-</ul>
-
-<h2>Add a Burger</h2>
-<form class="create-form">
-
-  <div class="form-group">
-    <label for="ca">Burger Name:</label>
-    <input type="text" id="ca" name="name">
+    <ul>
+      {{#each burgers}}
+      {{#unless eaten}}
+      {{> burgers/burger-block eaten=false}}
+      {{/unless}}
+      {{/each}}
+    </ul>
   </div>
 
-  <div class="form-group">
-    <label for="sleepy">Devoured?</label><br>
-    <input type="radio" name="sleepy" value="1" checked> Devoured!<br>
-    <input type="radio" name="sleepy" value="0"> Awake
+
+  <div class="col-sm boxes rounded-sm m-2 p-1">
+    <h2 class="text-center">Devoured</h2>
+
+    <ul>
+      {{#each burgers}}
+      {{#if eaten}}
+      {{> burgers/burger-block eaten=true}}
+      {{/if}}
+      {{/each}}
+    </ul>
   </div>
 
-  <button type="submit">Add Burger</button>
-</form>
+</div>
+
+
+<div class="row text-center">
+  <div class="col-sm m-2 p-2 rounded-sm boxes">
+    <h2>Add Burger</h2>
+    <form class="create-form">
+
+      <div class="form-group">
+        <label>Burger Name</label>
+        <input type="text" name="name" id="burgerName">
+      </div>
+
+      <button type="submit">Add Burger</button>
+    </form>
+  </div>
+</div>
