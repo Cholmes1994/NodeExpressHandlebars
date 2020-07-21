@@ -1,26 +1,29 @@
 // Make sure we wait to attach our handlers until the DOM is fully loaded.
 $(function() {
-    $(".change-eat").on("click", function(event) {
-      var id = $(this).data("id");
-      var newEat = $(this).data("neweat");
-  
-      var newBurgerState = {
-        eaten: newEat
+  $(".change-burger").on("click", function(event) {
+
+      let id = $(this).data("id");
+      let letsEat = $(this).data("eaten");
+
+      if (!letsEat) {
+        letsEat = true
+      } else (
+        letsEat = false
+      )
+
+      let letsEatState = {
+      eaten: letsEat
       };
-  
-      // Send the PUT request.
+
       $.ajax("/api/burgers/" + id, {
-        type: "PUT",
-        data: newBurgerState
+      type: "PUT",
+      data: letsEatState
       }).then(
-        function() {
-          console.log("changed eaten to", newEat);
-          // Reload the page to get the updated list
+      function() {
           location.reload();
-        }
+      }
       );
-    });
-  
+  });
     $(".create-form").on("submit", function(event) {
       // Make sure to preventDefault on a submit event.
       event.preventDefault();
